@@ -49,24 +49,6 @@ jobs:
         with:
           name: Quantum Services
           path: ./openapi_server.zip
-      - name: Prepare Sonar files
-        run: |
-         git init
-         git config --list   
-         git clone https://github.com/JaimeAlvaradoValiente/sonarQuantumAnalysis.git
-         rm ./sonarQuantumAnalysis/*.py
-         python sonar.py
-         
-      - name: Pushes to another repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'sonarQuantumAnalysis'
-          destination-github-username: ${{ secrets.USERNAME }}
-          destination-repository-name: 'sonarQuantumAnalysis'
-          user-email: ${{ secrets.EMAIL }}
-          target-branch: main
       - name: Check python project
         run: |
          cd ./openapi_server
