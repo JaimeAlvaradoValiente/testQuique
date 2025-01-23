@@ -45,14 +45,15 @@ jobs:
       - name: Zip code
         run: zip -r openapi_server.zip openapi_server
       - name: Upload APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: Quantum Services
           path: ./openapi_server.zip
+
       - name: Check python project
         run: |
          cd ./openapi_server
          python -m compileall .
          #python -m openapi_server          
       - name: Deploy Stage
-        run: curl -X POST -F 'name=quiqueprueba' -F 'yaml=https://raw.githubusercontent.com/javierrome236/quantumDeployment/main/openapi_tutorial.yaml' http://quantumservicesdeployment.spilab.es:8081/docker
+        run: curl -X POST -F 'name=pruebann' -F 'yaml=https://raw.githubusercontent.com/javierrome236/quantumDeployment/main/openapi_tutorial.yaml' http://quantumservicesdeployment.spilab.es:8081/docker
